@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 // import url from '../url'
-const baseUrl = "http://127.0.0.1:8000";
+const baseUrl = "http://localhost:8000/";
+// "http://127.0.0.1:8000/";
+
 
 export default class Contacto extends Component {
 
     constructor(props){
-      // variables
       super(props);
       this.state = {
         contacto:[],
@@ -18,11 +20,11 @@ export default class Contacto extends Component {
         idContacto:0,
         edit:false
       };
-      // funciones de onchange de los campos en el formulario
       this.handleChangeNombre = this.handleChangeNombre.bind(this);
       this.handleChangeApellido  = this.handleChangeApellido.bind(this);
       this.handleChangeDireccion  = this.handleChangeDireccion.bind(this);
       this.handleChangeNo_telefono  = this.handleChangeNo_telefono.bind(this);
+      console.log(1,this.handleChangeDireccion);
 
     }
 
@@ -33,12 +35,13 @@ export default class Contacto extends Component {
     loadDataContacto(){
 
       axios.get(baseUrl+'api/contacto/list').then( response => {
+        console.log('1- la respuesta fue: ',response);
           this.setState({
             contacto:response.data,
             contactoBackup:response.data
           });
        }).catch(error=>{
-         alert("Error "+error);
+        console.log("se produccion el sig. error ",error);//  alert("Error "+error);
        });
 
     }
@@ -46,41 +49,36 @@ export default class Contacto extends Component {
     filter(event){
 
       console.log(event.target.value);
-      // obtener datos de buscar
+      
       var text = event.target.value;
-      // obtener datos de array
       const data = this.state.contactoBackup;
 
       const newData = data.filter(function(item){
-          // variable de titulo
           const itemDataNombre = item.nombre.toUpperCase();
-          // variable de descripcion
+         
           const itemDataApellido = item.apellido.toUpperCase();
-          // juntarlos de titulo y descripcion
+          
           const itemData = itemDataNombre+" "+itemDataApellido;
-          // variable de buscar
+          
           const textData = text.toUpperCase();
-          // filtrar su es verdadero o no y lo devuelve
+      
           return itemData.indexOf(textData) > -1;
       });
 
       this.setState({contacto:newData});
 
     }
-
-    // campo de nombre
-    handleChangeNombre(event) {
+   
+    handleChangeNombre(event) {      
       this.setState({formNombre: event.target.value});
     }
 
-    //campo de descripcion
     handleChangeApellido(event) {
       this.setState({formApellido: event.target.value});
     }
 
-    // campo de precio
     handleChangeDireccion(event) {
-      this.setState({formPrecio: event.target.value});
+      this.setState({formDireccion: event.target.value});
     }
 
     handleChangeNo_telefono(event) {
@@ -88,100 +86,106 @@ export default class Contacto extends Component {
       }
     render() {
         return (
-          <div class="container">
+          <div className="container">
 
-            <br/>
-            <h3>Agenda Telefonica </h3>
+            <div>
+              <h3>Agenda Telefónica</h3>
+            </div>
+            
             <hr/>
 
-            <input class="form-control col-md-4" placeholder="Buscar..." value={this.state.text} onChange={(text) => this.filter(text)}/>
-            <br/>
-            <button type="button" class="btn btn-primary pull-right" onClick={()=>this.showModalCreate()}>
-              Crear un contacto
-            </button>
+           <div className="row"> 
+              <input className="form-control col-md-6" placeholder="Buscar..." value={this.state.text} onChange={(text) => this.filter(text)}/>
+                
+                <button type="button" className="btn btn-primary pull-right" onClick={()=>this.showModalCreate()}>
+                  Crear un contacto
+                </button>
+            </div>
 
             <hr/>
+            <div className="row">
+              
+              <table className="table table-striped ">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dirección</th>
+                    <th>No. Telefónico</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="bodytable">
+                    {this.listData()}
+                </tbody>
+              </table>
+            </div>
 
 
-            <table class="table table-bordered order-table ">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>No. Telefonico</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="bodytable">
-                  {this.listData()}
-              </tbody>
-            </table>
+            <div className="modal fade" id="exampleModalDelete" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal-dialog" role="document">
 
-            <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+                <div className="modal-content">
 
-                <div class="modal-content">
-
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Eliminar</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <p>Esta seguro desea de eliminar un regsitro?</p>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onClick={()=>this.sendNetworkDelete()}>Eliminar</button>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" className="btn btn-primary" onClick={()=>this.sendNetworkDelete()}>Eliminar</button>
                   </div>
                 </div>
-
               </div>
             </div>
 
 
             <form>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Formulario del contacto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                     <label for="exampleInputEmail1">Nombre de contacto </label>
-                     <input type="text" class="form-control" value={this.state.formNombre} onChange={this.handleChangeNombre} />
+              <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">Formulario del contacto</h5>
+                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
                     </div>
-                    <div class="form-group">
-                     <label for="exampleInputEmail1">Apellido del contacto</label>
-                     <textarea class="form-control" rows="3" value={this.state.formApellido} onChange={this.handleChangeApellido}></textarea>
+                    <div className="modal-body">
+                      <div className="form-group">
+                      <label htmlFor="exampleInputEmail1">Nombre </label>
+                      <input type="text" className="form-control" value={this.state.formNombre} onChange={this.handleChangeNombre} />                     
+                      </div>
+                      <div className="form-group">
+                      <label htmlFor="exampleInputEmail1">Apellido </label>
+                      <input className="form-control" value={this.state.formApellido} onChange={this.handleChangeApellido}/>
+                      </div>
+                      <div className="form-group">
+                      <label htmlFor="exampleInputEmail1">Dirección</label>
+                      <textarea type="number" rows="3" className="form-control" value={this.state.formDireccion} onChange={this.handleChangeDireccion} ></textarea>
+                      </div>
+                      <div className="form-group">
+                      <label htmlFor="exampleInputEmail1">No. Telefónico</label>
+                      <input type="number" className="form-control" value={this.state.formNo_telefono} onChange={this.handleChangeNo_telefono} />
+                      </div>
                     </div>
-                    <div class="form-group">
-                     <label for="exampleInputEmail1">Dirección</label>
-                     <input type="number" class="form-control" value={this.state.formDireccion} onChange={this.handleChangeDireccion} />
-                    </div>
-                    <div class="form-group">
-                     <label for="exampleInputEmail1">No. Telefonico</label>
-                     <input type="number" class="form-control" value={this.state.formNo_telefono} onChange={this.handleChangeNo_telefono} />
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
-                    {
-                      this.state.edit?
-                      <button type="button" class="btn btn-primary" onClick={()=>this.sendNetworkUpdate()}>Actualizar</button>
-                      :
-                      <button type="button" class="btn btn-primary" onClick={()=>this.sendNetworkProduct()}>Guardar</button>
-                    }
+                      {
+                        this.state.edit?
+                        <button type="button" className="btn btn-primary" onClick={()=>this.sendNetworkUpdate()}>Actualizar</button>
+                        :
+                        <button type="button" className="btn btn-primary" onClick={()=>this.sendNetworkContacto()}>Guardar</button>
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </form>
 
 
@@ -189,14 +193,13 @@ export default class Contacto extends Component {
         );
     }
 
-    showModalDelete(data){ 
-      // id seleccionado para eliminar
-      this.setState({ idProducto:data.id });
+    showModalDelete(data){
+      this.setState({ idContacto:data.id });
       $("#exampleModalDelete").modal("show");
     }
 
     showModalEdit(data){
-      //alert("mostrar modal "+JSON.stringify(data))
+      console.log('sd',data);
       this.setState({
         idContacto:data.id,
         formNombre:data.nombre,
@@ -220,7 +223,7 @@ export default class Contacto extends Component {
       $("#exampleModal").modal("show");
     }
 
-    sendNetworkProduct()
+    sendNetworkContacto()
     {
       const formData = new FormData()
       formData.append('nombre',this.state.formNombre)
@@ -231,15 +234,13 @@ export default class Contacto extends Component {
       axios.post(baseUrl+'api/contacto/create',formData).then(response=>{
 
            if (response.data.success==true) {
-             alert(response.data.message)
-             // para cargar datos de nuevo
-             this.loadDataContacto()
-             // para cerrar el modal
+             console.log('la respuesta fue: ',response.data.message);
+             this.loadDataContacto();
              $("#exampleModal").modal("hide");
            }
 
        }).catch(error=>{
-         alert("Error "+error);
+        console.log("se produccion el sig. error ",error);//  alert("Error "+error);
        })
 
     }
@@ -247,20 +248,18 @@ export default class Contacto extends Component {
     sendNetworkDelete(){
 
       const formData = new FormData()
-      formData.append('id',this.state.idContacto)
+      formData.append('id',this.state.idContacto);
 
       axios.post(baseUrl+'api/contacto/delete',formData).then(response=>{
 
            if (response.data.success==true) {
-             alert(response.data.message)
-             // para cargar datos de nuevo
-             this.loadDataContacto()
-             // para cerrar el modal
+             console.log('la respuesta fue: ',response.data.message);
+             this.loadDataContacto();
              $("#exampleModalDelete").modal("hide");
            }
 
        }).catch(error=>{
-         alert("Error "+error)
+        console.log("se produccion el sig. error ",error);//  alert("Error "+error);
        })
 
     }
@@ -277,15 +276,13 @@ export default class Contacto extends Component {
       axios.post(baseUrl+'api/contacto/update',formData).then(response=>{
 
            if (response.data.success==true) {
-             alert(response.data.message)
-             // para cargar datos de nuevo
-             this.loadDataContacto()
-             // para cerrar el modal
+             console.log('la respuesta fue: ',response.data.message)
+             this.loadDataContacto();
              $("#exampleModal").modal("hide");
            }
 
        }).catch(error=>{
-         alert("Error 456"+error)
+        console.log("se produccion el sig. error ",error);//  alert("Error "+error);
        })
 
     }
@@ -295,15 +292,18 @@ export default class Contacto extends Component {
       return this.state.contacto.map((data)=>{
 
         return(
-          <tr>
+          <tr key={data.id}>
             <td>{data.nombre}</td>
             <td>{data.apellido}</td>
             <td>{data.direccion}</td>
             <td>{data.no_telefono}</td>
             <td>
-              <button class="btn btn-info" onClick={()=>this.showModalEdit(data)}>Editar</button>
-              <br/>
-              <button class="btn btn-danger" onClick={()=>this.showModalDelete(data)}>Eliminar</button>
+              <div className="">
+                <button className="col-sm-4 btn btn-info" onClick={()=>this.showModalEdit(data)}>Editar</button>
+                
+                <button className="col-sm-4 btn btn-danger" onClick={()=>this.showModalDelete(data)}>Eliminar</button>
+              </div>
+              
             </td>
           </tr>
         )

@@ -8,21 +8,21 @@ use App\Contacto;
 class ControllerContacto extends Controller
 {
     public function index(){
-        dd(78);
-        return Contacto::all();      
+        return Contacto::all();
     }
 
     public function create(Request $request){
         Contacto::insert([
           'nombre' => $request->input('nombre'),
           'apellido' => $request->input('apellido'),
-          'dirreccion' => $request->input('dirreccion'),
+          'direccion' => $request->input('direccion'),
           'no_telefono' => $request->input('no_telefono')
         ]);
   
-        return $response() ->json([
+        return response() ->json([
             'message'=> "Guardo exitosamente",
-            'success'=> true
+            'success'=> true,
+            'status' => 200
         ]);
       }
 
@@ -30,14 +30,16 @@ class ControllerContacto extends Controller
 
          Contacto::where('id',$request->input('id'))->
             update([
-                'titulo' => $request->input('nombre'),
-                'descripcion' => $request->input('descripcion'),
-                'precio' => $request->input('precio')
+                'nombre' => $request->input('nombre'),
+                'apellido' => $request->input('apellido'),
+                'direccion' => $request->input('direccion'),
+                'no_telefono' => $request->input('no_telefono')
             ]);
 
-            return $response() ->json([
+            return response() ->json([
                 'message'=> "Actualizo exitosamente",
-                'success'=> true
+                'success'=> true,
+                'status' => 200
             ]);
     }
 
@@ -45,7 +47,7 @@ class ControllerContacto extends Controller
 
         Contacto::where('id',$request->input('id'))->delete();
   
-        return $response() ->json([
+        return response() ->json([
             'message'=> "Elimino exitosamente",
             'success'=> true
         ]);

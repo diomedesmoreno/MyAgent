@@ -9,4 +9,7 @@ class Contacto extends Model
     protected $table='contacto';
 
     protected $fillable=['id','nombre', 'apellido', 'direccion', 'no_telefono' ];
+
+    public $timestamps = false;
+
 }

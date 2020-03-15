@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('contacto/list','API\ControllerContacto@index');
-Route::post('contacto/create','API\ControllerContacto@create');
-Route::post('contacto/update','API\ControllerContacto@update');
-Route::post('contacto/delete','API\ControllerContacto@delete');
+Route::post('/contacto/create','API\ControllerContacto@create');
+Route::post('/contacto/update','API\ControllerContacto@update');
+Route::post('/contacto/delete','API\ControllerContacto@delete');
