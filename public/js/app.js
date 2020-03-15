@@ -55585,7 +55585,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
     _this.handleChangeApellido = _this.handleChangeApellido.bind(_assertThisInitialized(_this));
     _this.handleChangeDireccion = _this.handleChangeDireccion.bind(_assertThisInitialized(_this));
     _this.handleChangeNo_telefono = _this.handleChangeNo_telefono.bind(_assertThisInitialized(_this));
-    console.log(1, _this.handleChangeDireccion);
     return _this;
   }
 
@@ -55600,8 +55599,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(baseUrl + 'api/contacto/list').then(function (response) {
-        console.log('1- la respuesta fue: ', response);
-
         _this2.setState({
           contacto: response.data,
           contactoBackup: response.data
@@ -55613,7 +55610,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
   }, {
     key: "filter",
     value: function filter(event) {
-      console.log(event.target.value);
       var text = event.target.value;
       var data = this.state.contactoBackup;
       var newData = data.filter(function (item) {
@@ -55814,7 +55810,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
   }, {
     key: "showModalEdit",
     value: function showModalEdit(data) {
-      console.log('sd', data);
       this.setState({
         idContacto: data.id,
         formNombre: data.nombre,
@@ -55850,8 +55845,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
       formData.append('no_telefono', this.state.formNo_telefono);
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(baseUrl + 'api/contacto/create', formData).then(function (response) {
         if (response.data.success == true) {
-          console.log('la respuesta fue: ', response.data.message);
-
           _this4.loadDataContacto();
 
           $("#exampleModal").modal("hide");
@@ -55869,8 +55862,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
       formData.append('id', this.state.idContacto);
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(baseUrl + 'api/contacto/delete', formData).then(function (response) {
         if (response.data.success == true) {
-          console.log('la respuesta fue: ', response.data.message);
-
           _this5.loadDataContacto();
 
           $("#exampleModalDelete").modal("hide");
@@ -55892,8 +55883,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
       formData.append('no_telefono', this.state.formNo_telefono);
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(baseUrl + 'api/contacto/update', formData).then(function (response) {
         if (response.data.success == true) {
-          console.log('la respuesta fue: ', response.data.message);
-
           _this6.loadDataContacto();
 
           $("#exampleModal").modal("hide");
