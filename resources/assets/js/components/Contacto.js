@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 // import url from '../url'
-const baseUrl = "http://localhost:8000/";
-// "http://127.0.0.1:8000/";
+const baseUrl = "https://mycontactos.herokuapp.com/";
 
 
 export default class Contacto extends Component {
