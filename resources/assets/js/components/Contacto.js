@@ -24,7 +24,6 @@ export default class Contacto extends Component {
       this.handleChangeApellido  = this.handleChangeApellido.bind(this);
       this.handleChangeDireccion  = this.handleChangeDireccion.bind(this);
       this.handleChangeNo_telefono  = this.handleChangeNo_telefono.bind(this);
-      console.log(1,this.handleChangeDireccion);
 
     }
 
@@ -34,8 +33,7 @@ export default class Contacto extends Component {
 
     loadDataContacto(){
 
-      axios.get(baseUrl+'api/contacto/list').then( response => {
-        console.log('1- la respuesta fue: ',response);
+      axios.get(baseUrl+'api/contacto/list').then( response => {        
           this.setState({
             contacto:response.data,
             contactoBackup:response.data
@@ -46,10 +44,7 @@ export default class Contacto extends Component {
 
     }
 
-    filter(event){
-
-      console.log(event.target.value);
-      
+    filter(event){      
       var text = event.target.value;
       const data = this.state.contactoBackup;
 
@@ -198,8 +193,7 @@ export default class Contacto extends Component {
       $("#exampleModalDelete").modal("show");
     }
 
-    showModalEdit(data){
-      console.log('sd',data);
+    showModalEdit(data){      
       this.setState({
         idContacto:data.id,
         formNombre:data.nombre,
@@ -233,8 +227,7 @@ export default class Contacto extends Component {
 
       axios.post(baseUrl+'api/contacto/create',formData).then(response=>{
 
-           if (response.data.success==true) {
-             console.log('la respuesta fue: ',response.data.message);
+           if (response.data.success==true) {             
              this.loadDataContacto();
              $("#exampleModal").modal("hide");
            }
@@ -252,8 +245,7 @@ export default class Contacto extends Component {
 
       axios.post(baseUrl+'api/contacto/delete',formData).then(response=>{
 
-           if (response.data.success==true) {
-             console.log('la respuesta fue: ',response.data.message);
+           if (response.data.success==true) {             
              this.loadDataContacto();
              $("#exampleModalDelete").modal("hide");
            }
@@ -275,8 +267,7 @@ export default class Contacto extends Component {
 
       axios.post(baseUrl+'api/contacto/update',formData).then(response=>{
 
-           if (response.data.success==true) {
-             console.log('la respuesta fue: ',response.data.message)
+           if (response.data.success==true) {             
              this.loadDataContacto();
              $("#exampleModal").modal("hide");
            }
