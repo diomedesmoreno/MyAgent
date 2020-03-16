@@ -55667,7 +55667,21 @@ var Contacto = /*#__PURE__*/function (_Component) {
         onChange: function onChange(text) {
           return _this3.filter(text);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: " col-md-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "fibonacci"
+      }, "N\xFAmero fibonacci")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: " col-md-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "multiplo"
+      }, "M\xFAltiplo de una n\xFAmero")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: " col-md-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "numeroImpar"
+      }, "N\xFAmero impar o par"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "btn btn-primary pull-right",
         onClick: function onClick() {
@@ -55765,7 +55779,6 @@ var Contacto = /*#__PURE__*/function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "exampleInputEmail1"
       }, "Direcci\xF3n"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        type: "number",
         rows: "3",
         className: "form-control",
         value: this.state.formDireccion,
@@ -55775,7 +55788,7 @@ var Contacto = /*#__PURE__*/function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "exampleInputEmail1"
       }, "No. Telef\xF3nico"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
+        type: "text",
         className: "form-control",
         value: this.state.formNo_telefono,
         onChange: this.handleChangeNo_telefono

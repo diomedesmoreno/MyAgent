@@ -17,3 +17,7 @@ Route::get('/', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 });
+
+Route::get('fibonacci','EjerciciosController@fibonacci');
+Route::get('multiplo','EjerciciosController@multiplo');
+Route::get('numeroImpar','EjerciciosController@numeroImpar');

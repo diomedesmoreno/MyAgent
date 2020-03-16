@@ -90,7 +90,17 @@ export default class Contacto extends Component {
 
            <div className="row"> 
               <input className="form-control col-md-6" placeholder="Buscar..." value={this.state.text} onChange={(text) => this.filter(text)}/>
-                
+              <div className="row"> 
+                <div className=" col-md-3"> 
+                  <a href="fibonacci">Número fibonacci</a>  
+                </div>
+                <div className=" col-md-3"> 
+                  <a href="multiplo">Múltiplo de una número</a>  
+                </div>
+                <div className=" col-md-3"> 
+                  <a href="numeroImpar">Número impar o par</a>
+                </div>
+              </div>
                 <button type="button" className="btn btn-primary pull-right" onClick={()=>this.showModalCreate()}>
                   Crear un contacto
                 </button>
@@ -160,11 +170,11 @@ export default class Contacto extends Component {
                       </div>
                       <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Dirección</label>
-                      <textarea type="number" rows="3" className="form-control" value={this.state.formDireccion} onChange={this.handleChangeDireccion} ></textarea>
+                      <textarea rows="3" className="form-control" value={this.state.formDireccion} onChange={this.handleChangeDireccion} ></textarea>
                       </div>
                       <div className="form-group">
                       <label htmlFor="exampleInputEmail1">No. Telefónico</label>
-                      <input type="number" className="form-control" value={this.state.formNo_telefono} onChange={this.handleChangeNo_telefono} />
+                      <input type="text" className="form-control" value={this.state.formNo_telefono} onChange={this.handleChangeNo_telefono} />
                       </div>
                     </div>
                     <div className="modal-footer">
