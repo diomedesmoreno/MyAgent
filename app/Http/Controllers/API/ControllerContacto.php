@@ -15,7 +15,7 @@ class ControllerContacto extends Controller
         Contacto::insert([
           'nombre' => $request->input('nombre'),
           'apellido' => $request->input('apellido'),
-          'direccion' => $request->input('direccion'),
+          'correo' => $request->input('correo'),
           'no_telefono' => $request->input('no_telefono')
         ]);
   
@@ -32,7 +32,7 @@ class ControllerContacto extends Controller
             update([
                 'nombre' => $request->input('nombre'),
                 'apellido' => $request->input('apellido'),
-                'direccion' => $request->input('direccion'),
+                'correo' => $request->input('correo'),
                 'no_telefono' => $request->input('no_telefono')
             ]);
 

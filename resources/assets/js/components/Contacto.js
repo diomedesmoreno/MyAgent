@@ -21,7 +21,7 @@ export default class Contacto extends Component {
       };
       this.handleChangeNombre = this.handleChangeNombre.bind(this);
       this.handleChangeApellido  = this.handleChangeApellido.bind(this);
-      this.handleChangeDireccion  = this.handleChangeDireccion.bind(this);
+      this.handleChangeCorreo  = this.handleChangeCorreo.bind(this);
       this.handleChangeNo_telefono  = this.handleChangeNo_telefono.bind(this);
 
     }
@@ -71,8 +71,8 @@ export default class Contacto extends Component {
       this.setState({formApellido: event.target.value});
     }
 
-    handleChangeDireccion(event) {
-      this.setState({formDireccion: event.target.value});
+    handleChangeCorreo(event) {
+      this.setState({formCorreo: event.target.value});
     }
 
     handleChangeNo_telefono(event) {
@@ -169,8 +169,8 @@ export default class Contacto extends Component {
                       <input className="form-control" value={this.state.formApellido} onChange={this.handleChangeApellido}/>
                       </div>
                       <div className="form-group">
-                      <label htmlFor="exampleInputEmail1">Dirección</label>
-                      <textarea rows="3" className="form-control" value={this.state.formDireccion} onChange={this.handleChangeDireccion} ></textarea>
+                      <label htmlFor="exampleInputEmail1">Correo electrónico</label>
+                      <input type="email" className="form-control" value={this.state.formCorreo} onChange={this.handleChangeCorreo} />
                       </div>
                       <div className="form-group">
                       <label htmlFor="exampleInputEmail1">No. Telefónico</label>
@@ -207,7 +207,7 @@ export default class Contacto extends Component {
         idContacto:data.id,
         formNombre:data.nombre,
         formApellido: data.apellido,
-        formDireccion:data.direccion,
+        formCorreo:data.correo,
         formNo_telefono: data.no_telefono,
         edit:true
       });
@@ -219,7 +219,7 @@ export default class Contacto extends Component {
         idContacto:0,
         formNombre:"",
         formApellido:"",
-        formDireccion:"",
+        formCorreo:"",
         formNo_telefono:"",
         edit:false
       });
@@ -231,7 +231,7 @@ export default class Contacto extends Component {
       const formData = new FormData()
       formData.append('nombre',this.state.formNombre)
       formData.append('apellido',this.state.formApellido)
-      formData.append('direccion',this.state.formDireccion)
+      formData.append('correo',this.state.formCorreo)
       formData.append('no_telefono',this.state.formNo_telefono)
 
       axios.post(baseUrl+'api/contacto/create',formData).then(response=>{
@@ -271,7 +271,7 @@ export default class Contacto extends Component {
       formData.append('id',this.state.idContacto)
       formData.append('nombre',this.state.formNombre)
       formData.append('apellido',this.state.formApellido)
-      formData.append('direccion',this.state.formDireccion)
+      formData.append('correo',this.state.formCorreo)
       formData.append('no_telefono',this.state.formNo_telefono)
 
       axios.post(baseUrl+'api/contacto/update',formData).then(response=>{
@@ -295,7 +295,7 @@ export default class Contacto extends Component {
           <tr key={data.id}>
             <td>{data.nombre}</td>
             <td>{data.apellido}</td>
-            <td>{data.direccion}</td>
+            <td>{data.correo}</td>
             <td>{data.no_telefono}</td>
             <td>
               <div className="">
