@@ -17,7 +17,7 @@ class CreateContactoTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
-            $table->string('apelldio');
+            $table->string('apellido');
             $table->string('no_telefono');
             $table->timestamps();
         });
