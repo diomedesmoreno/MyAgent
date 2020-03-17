@@ -55583,7 +55583,7 @@ var Contacto = /*#__PURE__*/function (_Component) {
     };
     _this.handleChangeNombre = _this.handleChangeNombre.bind(_assertThisInitialized(_this));
     _this.handleChangeApellido = _this.handleChangeApellido.bind(_assertThisInitialized(_this));
-    _this.handleChangeDireccion = _this.handleChangeDireccion.bind(_assertThisInitialized(_this));
+    _this.handleChangeCorreo = _this.handleChangeCorreo.bind(_assertThisInitialized(_this));
     _this.handleChangeNo_telefono = _this.handleChangeNo_telefono.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -55638,10 +55638,10 @@ var Contacto = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "handleChangeDireccion",
-    value: function handleChangeDireccion(event) {
+    key: "handleChangeCorreo",
+    value: function handleChangeCorreo(event) {
       this.setState({
-        formDireccion: event.target.value
+        formCorreo: event.target.value
       });
     }
   }, {
@@ -55778,11 +55778,11 @@ var Contacto = /*#__PURE__*/function (_Component) {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "exampleInputEmail1"
-      }, "Direcci\xF3n"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        rows: "3",
+      }, "Correo electr\xF3nico"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "email",
         className: "form-control",
-        value: this.state.formDireccion,
-        onChange: this.handleChangeDireccion
+        value: this.state.formCorreo,
+        onChange: this.handleChangeCorreo
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -55827,7 +55827,7 @@ var Contacto = /*#__PURE__*/function (_Component) {
         idContacto: data.id,
         formNombre: data.nombre,
         formApellido: data.apellido,
-        formDireccion: data.direccion,
+        formCorreo: data.correo,
         formNo_telefono: data.no_telefono,
         edit: true
       });
@@ -55840,7 +55840,7 @@ var Contacto = /*#__PURE__*/function (_Component) {
         idContacto: 0,
         formNombre: "",
         formApellido: "",
-        formDireccion: "",
+        formCorreo: "",
         formNo_telefono: "",
         edit: false
       });
@@ -55854,7 +55854,7 @@ var Contacto = /*#__PURE__*/function (_Component) {
       var formData = new FormData();
       formData.append('nombre', this.state.formNombre);
       formData.append('apellido', this.state.formApellido);
-      formData.append('direccion', this.state.formDireccion);
+      formData.append('correo', this.state.formCorreo);
       formData.append('no_telefono', this.state.formNo_telefono);
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(baseUrl + 'api/contacto/create', formData).then(function (response) {
         if (response.data.success == true) {
@@ -55892,7 +55892,7 @@ var Contacto = /*#__PURE__*/function (_Component) {
       formData.append('id', this.state.idContacto);
       formData.append('nombre', this.state.formNombre);
       formData.append('apellido', this.state.formApellido);
-      formData.append('direccion', this.state.formDireccion);
+      formData.append('correo', this.state.formCorreo);
       formData.append('no_telefono', this.state.formNo_telefono);
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post(baseUrl + 'api/contacto/update', formData).then(function (response) {
         if (response.data.success == true) {
@@ -55912,7 +55912,7 @@ var Contacto = /*#__PURE__*/function (_Component) {
       return this.state.contacto.map(function (data) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: data.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.nombre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.apellido), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.direccion), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.no_telefono), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.nombre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.apellido), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.correo), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, data.no_telefono), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: ""
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "col-sm-4 btn btn-info",

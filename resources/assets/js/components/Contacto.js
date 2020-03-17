@@ -107,7 +107,7 @@ export default class Contacto extends Component {
             </div>
 
             <hr/>
-            <div className="row">
+            <div className="row"> 
               
               <table className="table table-striped ">
                 <thead>

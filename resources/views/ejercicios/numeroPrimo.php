@@ -20,8 +20,8 @@
 			@endif
 
 			<div class="container">
-				<h1>Número Impar </h1>
-				<div class="row"> 
+				<h1>Números Primos</h1>
+				{{-- <div class="row"> 
 					<form>
 						<div class="row">
 						  <div class="col-sm-12">
@@ -33,11 +33,13 @@
 						</div>  
 					</form>
 					<br/>
-				</div>
+				</div> --}}
 				
 				<div class="row">
 					<ul class="list-group">
-						<li class="list-group-item"> El resultado es: {{ $resultado }}</</li>
+						@foreach ($resultado as $value)
+						<li class="list-group-item">{{ $value }}</li>
+						@endforeach
 					</ul>
 				</div>
 			</div>

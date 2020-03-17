@@ -9,7 +9,7 @@ class EjerciciosController extends Controller
     public function fibonacci(Request $request)
     {
         // $this->validate($request,[ 'numero'=>'required']);
-        $limit = $request->numero ? $request->numero : 0;
+        $limit = 4000;//$request->numero ? $request->numero : 0;
         $fibonacci = array(0,1); 
         for($i=2;$i<=$limit;$i++){
             $fibonacci[$i] = $fibonacci[$i-1]+$fibonacci[$i-2];
@@ -19,25 +19,46 @@ class EjerciciosController extends Controller
     public function multiplo(Request $request)
     {
         // $this->validate($request,[ 'numero'=>'required']);
-        $numero = $request->numero ? $request->numero: 2;
-            if($numero%3==0){
-             $resultado = $numero." es múltiplo de 3";
-            } else if($numero%5==0){
-                $resultado = $numero." es múltiplo de 5";
-            } else {
-                $resultado = $numero." no es múltiplo de 3 ni de 5";
+        $limite = 1000;//$request->numero ? $request->numero: 2;
+            for($i=0;$i<$limite;$i++){
+                if($i%3==0){
+                 $resultado += $i;
+                } else if($i%5==0){
+                    $resultado += $i;
+                }
             }
         return view('ejercicios.multiplo',compact('resultado'));
     }
-    public function numeroImpar(Request $request)
+    public function numeroPrimo(Request $request)
     {
         // $this->validate($request,[ 'numero'=>'required']);
-        $numero = $request->numero;        
-        if ($numero%2==0){
-            $resultado = "el $numero es par";
-        }else{
-            $resultado = "el $numero es impar";
+        
+        $resultado = [];      
+        
+        function primo($num)        
+        {        
+            if ($num == 2 || $num == 3 || $num == 5 || $num == 7) {        
+                return True;        
+            } else {        
+                if ($num % 2 != 0) {        
+                    for ($i = 3; $i <= sqrt($num); $i += 2) {        
+                        if ($num % $i == 0) {        
+                            return False;        
+                        }        
+                    }        
+                    return True;        
+                }        
+            }        
+            return False;        
         }
+        for ($i=1; $i<=130195; $i++) {
+            if (primo($i)) {        
+                $resultado[$i] = $i; 
+            }        
+        }
+
+        // dd($resultado);     
+
         return view('ejercicios.numeroImpar',compact('resultado'));
     }
 }

@@ -19,7 +19,7 @@
 				{{Session::get('success')}}
 			</div>
 			@endif
-            <div class="row"> 
+            {{-- <div class="row"> 
                 <form>
                     <div class="row">
                       <div class="col-sm-12">
@@ -31,9 +31,10 @@
                     </div>
                     <br/>              
                 </form>
-            </div>
+            </div> --}}
             
             <div class="row">
+                <h1>Serie Fibonacci</h1>
                 <ul class="list-group">
                     @foreach ($fibonacci as $value)
                     <li class="list-group-item">{{ $value }}</</li>

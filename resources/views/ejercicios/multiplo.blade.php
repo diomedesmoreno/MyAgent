@@ -19,7 +19,7 @@
 				{{Session::get('success')}}
 			</div>
 			@endif
-            <div class="row"> 
+            {{-- <div class="row"> 
                 <form>
                     <div class="row">
                       <div class="col-sm-12">
@@ -30,11 +30,12 @@
                         <button type="submit" class="btn btn-primary">Comprobar</button>
                     </div>
                 </form>
-            </div>
+            </div> --}}
             
             <div class="row">
+                <h1>Múltiplo</h1>
                 <ul class="list-group">
-                    <li class="list-group-item"> El resultado es: {{ $resultado }}</</li>
+                    <li class="list-group-item"> El resultado es: {{ $resultado }}</li>
                 </ul>
             </div>
         </div>

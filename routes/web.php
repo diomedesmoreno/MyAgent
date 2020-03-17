@@ -20,4 +20,4 @@ Route::get('/contacto', function () {
 
 Route::get('fibonacci','EjerciciosController@fibonacci');
 Route::get('multiplo','EjerciciosController@multiplo');
-Route::get('numeroImpar','EjerciciosController@numeroImpar');
+Route::get('numeroPrimo','EjerciciosController@numeroPrimo');
