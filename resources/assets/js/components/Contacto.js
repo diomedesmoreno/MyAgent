@@ -98,7 +98,7 @@ export default class Contacto extends Component {
                   <a href="multiplo">Múltiplo de una número</a>  
                 </div>
                 <div className=" col-md-3"> 
-                  <a href="numeroImpar">Número impar o par</a>
+                  <a href="numeroPrimo">Números primo</a>
                 </div>
               </div>
                 <button type="button" className="btn btn-primary pull-right" onClick={()=>this.showModalCreate()}>
