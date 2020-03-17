@@ -3,7 +3,7 @@
 <div class="row">
 	<section class="content">
         <div class="container">
-            {{ -- <h1>Serie fibonacci </h1> -- }}
+            {{-- <h1>Serie fibonacci </h1> --}}
             @if (count($errors) > 0)
 			<div class="alert alert-danger">
 				<strong>Error!</strong> Revise los campos obligatorios.<br><br>

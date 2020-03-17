@@ -20,6 +20,7 @@ class EjerciciosController extends Controller
     {
         // $this->validate($request,[ 'numero'=>'required']);
         $limite = 1000;//$request->numero ? $request->numero: 2;
+        $resultado = 0;
             for($i=0;$i<$limite;$i++){
                 if($i%3==0){
                  $resultado += $i;
@@ -59,6 +60,6 @@ class EjerciciosController extends Controller
 
         // dd($resultado);     
 
-        return view('ejercicios.numeroImpar',compact('resultado'));
+        return view('ejercicios.numeroPrimo',compact('resultado'));
     }
 }

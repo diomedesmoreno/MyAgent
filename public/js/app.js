@@ -55680,8 +55680,8 @@ var Contacto = /*#__PURE__*/function (_Component) {
       }, "M\xFAltiplo de una n\xFAmero")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: " col-md-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "numeroImpar"
-      }, "N\xFAmero impar o par"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        href: "numeroPrimo"
+      }, "N\xFAmeros primo"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "btn btn-primary pull-right",
         onClick: function onClick() {
